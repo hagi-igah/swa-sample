@@ -66,8 +66,28 @@ export default defineConfig([
         project: ['./tsconfig.node.json', './tsconfig.app.json'],
         tsconfigRootDir: import.meta.dirname,
       },
-      // other options...
-    },
+    // other options...
   },
 ])
+```
+
+---
+
+## Azure デプロイ手順 (Azure Static Web Apps)
+
+本プロジェクトは **Azure Static Web Apps (SWA)** にデプロイされます。
+
+### 1. SWA への自動デプロイ
+リポジトリの `main` ブランチにプッシュすると、GitHub Actions が自動的にトリガーされ、ビルドとデプロイが行われます。
+
+* **自動ビルド構成**: `.github/workflows/azure-static-web-apps-salmon-dune-0117f6700.yml`
+* **対象環境**: Production / Staging (プルリクエスト作成時)
+
+---
+
+## 💡 コンテナ版 (Azure Container Apps) について
+SWA の固定費を抑え、フロントエンドと BFF のドメインを一本化して CORS を回避するために、Nginx リバースプロキシを同居させたコンテナ版として **`react-web`** プロジェクトを別途作成しています。
+
+コンテナとしてデプロイ・運用する場合は、[react-web/README.md](../react-web/README.md) の手順を参照してください。
+
 ```
